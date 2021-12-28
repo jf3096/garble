@@ -7,7 +7,7 @@ import (
 	"go/ast"
 	"go/token"
 
-	ah "mvdan.cc/garble/internal/asthelper"
+	ah "github.com/jf3096/garble/internal/asthelper"
 )
 
 type seed struct{}

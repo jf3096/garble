@@ -9,7 +9,7 @@ import (
 	"math"
 	mathrand "math/rand"
 
-	ah "mvdan.cc/garble/internal/asthelper"
+	ah "github.com/jf3096/garble/internal/asthelper"
 )
 
 type swap struct{}
