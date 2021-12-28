@@ -90,7 +90,7 @@ func createExclusive(name string) (*os.File, error) {
 	return os.OpenFile(name, os.O_RDWR|os.O_CREATE|os.O_EXCL, 0o666)
 }
 
-// TODO(mvdan): consider using proper atomic file writes.
+// TODO(github.com/jf3096): consider using proper atomic file writes.
 // Or possibly even "lockedfile", mimicking cmd/go.
 
 func writeFileExclusive(name string, data []byte) error {

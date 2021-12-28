@@ -217,7 +217,7 @@ func (w *uniqueLineWriter) Write(p []byte) (n int, err error) {
 }
 
 // debugf is like log.Printf, but it is a no-op by default.
-// TODO(mvdan): remove once we use 1.18: https://github.com/golang/go/issues/47164
+// TODO(github.com/jf3096): remove once we use 1.18: https://github.com/golang/go/issues/47164
 func debugf(format string, args ...interface{}) {
 	if !flagDebug {
 		return
@@ -1492,7 +1492,7 @@ func (tf *transformer) transformGo(file *ast.File) *ast.File {
 			}
 			named := namedType(tf.info.TypeOf(parent.X))
 			if named == nil {
-				break // TODO(mvdan): add a test
+				break // TODO(github.com/jf3096): add a test
 			}
 			if name := named.Obj().Name(); strings.HasPrefix(name, "_Ctype") {
 				// A field accessor on a cgo type, such as a C struct.
@@ -1513,7 +1513,7 @@ func (tf *transformer) transformGo(file *ast.File) *ast.File {
 			if path != curPkg.ImportPath {
 				named := namedType(obj.Type())
 				if named == nil {
-					break // TODO(mvdan): add a test
+					break // TODO(github.com/jf3096): add a test
 				}
 				obfPkg := obfuscatedTypesPackage(path)
 				if obfPkg.Scope().Lookup(obj.Name()) != nil {
@@ -1956,7 +1956,7 @@ How to install Go: https://golang.org/doc/install
 	} else {
 		// If GOPRIVATE isn't set and we're in a module, use its module
 		// path as a GOPRIVATE default. Include a _test variant too.
-		// TODO(mvdan): we shouldn't need the _test variant here,
+		// TODO(github.com/jf3096): we shouldn't need the _test variant here,
 		// as the import path should not include it; only the package name.
 		if mod, err := os.ReadFile(cache.GoEnv.GOMOD); err == nil {
 			modpath := modfile.ModulePath(mod)

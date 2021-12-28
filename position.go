@@ -31,7 +31,7 @@ func printFile(file1 *ast.File) ([]byte, error) {
 	src := buf1.Bytes()
 
 	if !curPkg.ToObfuscate {
-		// TODO(mvdan): make transformCompile handle untouched
+		// TODO(github.com/jf3096): make transformCompile handle untouched
 		// packages like runtime earlier on, to remove these checks.
 		return src, nil
 	}
