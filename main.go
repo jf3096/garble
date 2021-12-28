@@ -285,7 +285,7 @@ func goVersionOK() bool {
 		return false
 	}
 
-	versionSemver := "v" + strings.TrimPrefix(version, "go")
+	versionSemver := "v" + strings.TrimPrefix(version, "tinygo")
 	if semver.Compare(versionSemver, minGoVersionSemver) < 0 {
 		fmt.Fprintf(os.Stderr, "Go version %q is too old; please upgrade to Go %s\n", version, suggestedGoVersion)
 		return false
@@ -405,7 +405,7 @@ func toolexecCmd(command string, args []string) (*exec.Cmd, error) {
 	// to run 'go list' on the same set of packages.
 	flags, args := splitFlagsFromArgs(args)
 	if hasHelpFlag(flags) {
-		out, _ := exec.Command("go", command, "-h").CombinedOutput()
+		out, _ := exec.Command("tinygo", command, "-h").CombinedOutput()
 		fmt.Fprintf(os.Stderr, `
 usage: garble [garble flags] %s [arguments]
 
@@ -497,7 +497,7 @@ This command wraps "go %s". Below is its help:
 	goArgs = append(goArgs, flags...)
 	goArgs = append(goArgs, args...)
 
-	return exec.Command("go", goArgs...), nil
+	return exec.Command("tinygo", goArgs...), nil
 }
 
 var transformFuncs = map[string]func([]string) (args []string, _ error){
@@ -1931,7 +1931,7 @@ func flagSetValue(flags []string, name, value string) []string {
 }
 
 func fetchGoEnv() error {
-	out, err := exec.Command("go", "env", "-json",
+	out, err := exec.Command("tinygo", "env", "-json",
 		"GOPRIVATE", "GOMOD", "GOVERSION", "GOCACHE",
 	).CombinedOutput()
 	if err != nil {
